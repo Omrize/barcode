@@ -86,7 +86,7 @@ try{
 	$d = !$is2D ? new DNS1D() : new DNS2D();
 	$d->setStorPath(__DIR__.'/cache/');
 
-	$output = '<img class="max-w-full' . ($is2D ? ' w-full' : ' w-1/6') . '" src="data:image/svg+xml;base64,' .
+	$output = '<img class="max-w-full' . ($is2D ? ' w-1/2' : ' ') . '" src="data:image/svg+xml;base64,' .
 		base64_encode($d->getBarcodeSvg($text, $type)) . '" alt="barcode"   />';
 	
 	$data['data'] = $output;
