@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickR</title>
+    <link href="./dist/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="flex flex-col h-screen bg-white dark:bg-gray-900">
+
+        <nav class="border-gray-200 px-2 sm:px-4 py-6 rounded">
+            <div class="container flex flex-wrap items-center justify-between mx-auto">
+                <a href="index.html" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clip-rule="evenodd" />
+                    </svg>
+                      
+                    Go Back                    
+                </a>
+            </div>
+        </nav>
+
+        <div class="container mx-auto flex-1">
+            <div class="h-full flex flex-col">
+                <div class="p-6">
+                    <h1 class="my-4 text-4xl font-bold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center">Create QR Codes in Seconds</h1>
+                    <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center">Generate QR codes for various types of data, including text, url, and more with our quick and easy QR code generator.</p>
+                </div>
+                <div class="flex gap-6">
+                    <div class="block p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg w-2/3">
+
+                        <div>
+                            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a type</label>
+                            <select id="type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Choose a type</option>
+                                <optgroup label="2D Barcodes"></optgroup>
+                                <option data-2d="true">QRCODE</option>
+                                <option data-2d="true">PDF417</option>
+                                <option data-2d="true">DATAMATRIX</option>
+                                <optgroup label="1D Barcodes"></optgroup>
+                                <option>C39</option>
+                                <option>C39+</option>
+                                <option>C39E</option>
+                                <option>C39E+</option>
+                                <option>C93</option>
+                                <option>S25</option>
+                                <option>S25+</option>
+                                <option>I25</option>
+                                <option>I25+</option>
+                                <option>C128</option>
+                                <option>C128A</option>
+                                <option>C128B</option>
+                                <option>C128C</option>
+                                <option>EAN2</option>
+                                <option>EAN5</option>
+                                <option>EAN8</option>
+                                <option>EAN13</option>
+                                <option>UPCA</option>
+                                <option>UPCE</option>
+                                <option>MSI</option>
+                                <option>MSI+</option>
+                                <option>POSTNET</option>
+                                <option>PLANET</option>
+                                <option>RMS4CC</option>
+                                <option>KIX</option>
+                                <option>IMB</option>
+                                <option>CODABAR</option>
+                                <option>CODE11</option>
+                                <option>PHARMA</option>
+                                <option>PHARMA2T</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-6">
+                            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
+                            <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-800 focus:border-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-800 dark:focus:border-gray-800" placeholder="Write your text here..."></textarea>
+                        </div>
+
+                        <div id="error" class="flex hidden p-4 my-6 text-sm text-red-700 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Info</span>
+                            <div id="error-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-6 h-full w-1/3">
+                        <div class="flex items-center justify-center p-6 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg h-full">
+                            <div class="relative w-2/3 h-2/3">
+                                <div id="overlay" class="absolute w-full h-full bg-white/95 hidden">
+                                    <div id="spinner" class="flex items-center justify-center h-full" role="status">
+                                        <svg aria-hidden="true" class="inline h-2/4 text-gray-100 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                                        </svg>
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                                <div id="qr-container" class="w-full flex items-center justify-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="p-6 rounded-lg">
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">Made with 💖 by <a href="https://flowbite.com/" class="hover:underline">Ajem Omar</a> © All Rights Reserved.
+            </span>
+        </footer>
+
+
+    </div>
+
+
+    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>
